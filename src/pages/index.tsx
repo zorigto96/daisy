@@ -4,12 +4,14 @@ import { useState } from "react";
 import { Button } from "~/components/ui/button";
 
 export default function Home() {
-  const [display, setDisplay] = useState("");
-  const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const [display, setDisplay] = useState("0");
+  const numbers = [3, 2, 1, 6, 5, 4, 9, 8, 7];
 
   function hasNumber(myString: string) {
     return /\d/.test(myString);
   }
+
+  console.log(display);
 
   return (
     <>
@@ -25,12 +27,20 @@ export default function Home() {
           if (event.key === "Backspace") {
             return setDisplay((prev) => prev.substring(0, prev.length - 1));
           }
+          if (event.key === ".") {
+            return setDisplay((prev) => {
+              if (prev.includes(".")) {
+                return prev;
+              }
+              return prev + ".";
+            });
+          }
         }}
         className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-t from-[#ddb4f6] to-[#8dd0fc]"
       >
         <div className="flex flex-col gap-5">
           <div className="h-8 w-auto rounded-md bg-slate-100 px-3 py-1 text-right">
-            {Number(display).toLocaleString()}
+            {display}
           </div>
           <div className="grid grid-cols-3 gap-3">
             {numbers.reverse().map((val) => (
@@ -59,7 +69,18 @@ export default function Home() {
             >
               0
             </Button>
-            <Button variant={"default"} size={"lg"}>
+            <Button
+              onClick={() =>
+                setDisplay((prev) => {
+                  if (prev.includes(".")) {
+                    return prev;
+                  }
+                  return prev + ".";
+                })
+              }
+              variant={"default"}
+              size={"lg"}
+            >
               .
             </Button>
           </div>
