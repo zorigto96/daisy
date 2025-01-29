@@ -1,11 +1,18 @@
 import Head from "next/head";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { Button } from "~/components/ui/button";
 
 export default function Home() {
   const [display, setDisplay] = useState("0");
   const numbers = [7, 8, 9, 4, 5, 6, 1, 2, 3];
+  const ref = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (ref.current !== null) {
+      ref.current.focus();
+    }
+  }, []);
 
   const handleNumberInput = (value: string) => {
     setDisplay((prev) => (prev === "0" ? value : prev + value));
@@ -25,6 +32,7 @@ export default function Home() {
       </Head>
       <main
         tabIndex={0}
+        ref={ref}
         onKeyDown={(e) => {
           if (/\d/.test(e.key)) handleNumberInput(e.key);
           if (e.key === "Backspace") handleDelete();
