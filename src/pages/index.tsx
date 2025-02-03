@@ -11,6 +11,9 @@ export default function Home() {
         <nav>
           <menu>
             <li>
+              <Link href={"/shooting"}>Shooting</Link>
+            </li>
+            <li>
               <Link href={"/calculator"}>Calculator</Link>
             </li>
           </menu>

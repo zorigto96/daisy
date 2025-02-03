@@ -70,7 +70,7 @@ export default function Calculator() {
 
   const handlePlusMinus = () => {
     setDisplay((prev) =>
-      prev === "0" ? prev : prev.startsWith("-") ? prev.slice(1) : `-${prev}`
+      prev === "0" ? prev : prev.startsWith("-") ? prev.slice(1) : `-${prev}`,
     );
   };
 
@@ -113,7 +113,7 @@ export default function Calculator() {
           }
           if (e.key === "Enter" || e.key === "=") handleEqual();
         }}
-        className="flex min-h-screen flex-col items-center justify-center bg-black outline-none"
+        className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-[hsla(287,23%,65%,1)] to-[#695548] outline-none"
       >
         <div className="w-80 max-w-full px-4">
           <div className="mb-4 h-24 text-right text-6xl font-light text-white">
@@ -125,7 +125,7 @@ export default function Calculator() {
               display
             )}
           </div>
-          
+
           <div className="grid grid-cols-4 gap-2">
             {/* Top Row */}
             <Button
